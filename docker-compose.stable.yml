@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  app1:
+    build:
+      context: ./webserver
+
+  app2:
+    build:
+      context: ./webserver
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.stable.conf:/etc/nginx/nginx.conf
+    ports:
+      - 8888:8888
+    links:
+      - app1
+      - app2
